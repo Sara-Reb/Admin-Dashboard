@@ -1,3 +1,4 @@
+/* General Reset */
 *,
 *::after,
 *::before {
@@ -6,19 +7,23 @@
   box-sizing: border-box;
 }
 
+/* Root Variables */
 :root {
   font-size: 18px;
   --background-color: rgb(233, 233, 233);
   --sidebar-color: rgb(50, 156, 218);
+  --fallback-font: Arial, sans-serif;
 }
 
+/* Body Styles */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", var(--fallback-font);
   height: 100vh;
-  margin: auto;
-  background-color: var(--background-color);
+  background-color: var(--background-color, #e9e9e9);
+  background-color: var(--background-color, rgb(233, 233, 233));
 }
 
+/* Typography */
 h2,
 h3 {
   display: inline;
@@ -29,6 +34,7 @@ p {
   font-size: 0.8rem;
 }
 
+/* Layout Containers */
 .container {
   display: grid;
   grid-template-columns: minmax(250px, 1fr) 4fr;
@@ -38,6 +44,7 @@ p {
   margin: auto;
 }
 
+/* Header Section */
 .header {
   grid-column: 2 / 3;
   display: grid;
@@ -65,6 +72,7 @@ p {
 }
 
 .search input {
+  width: 40vw; /* Fallback for browsers that do not support clamp() */
   width: clamp(70px, 40vw, 500px);
   height: 20px;
   border-radius: 1rem;
@@ -95,6 +103,7 @@ p {
   width: 30px;
 }
 
+/* Personal Info Section */
 .personal-info img {
   width: 60px;
   height: 60px;
@@ -116,7 +125,6 @@ p {
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   font-weight: 600;
-  max-width: 120px;
 }
 
 .personal-info {
@@ -131,12 +139,12 @@ p {
 .button-options {
   justify-self: end;
   display: grid;
-  justify-items: end;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
 }
 
+/* Sidebar Section */
 .sidebar {
   position: relative;
   background-color: var(--sidebar-color);
@@ -183,9 +191,10 @@ p {
   padding: 1rem;
 }
 
+/* Content Section */
 .content {
   display: grid;
-  grid-template-columns: minmax(350px, 7fr) minmax(250px, 4fr);
+  grid-template-columns: minmax(320px, 7fr) minmax(250px, 4fr);
   padding: 2rem;
   gap: 2rem;
   align-items: stretch;
@@ -194,9 +203,7 @@ p {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  justify-content: center;
-  align-content: space-between;
+  grid-template-rows: auto 1fr;
   gap: 1rem;
 }
 
@@ -204,16 +211,25 @@ p {
   grid-column: 1/-1;
 }
 
+.project-cards {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
 .side-info {
   display: grid;
-  align-content: space-between;
+  align-content: start;
   justify-content: center;
+  gap: 2rem;
 }
 
 .side-info p {
   font-size: 0.7rem;
 }
 
+/* Card Styles */
 .card {
   background-color: white;
   border-radius: 0.5rem;
@@ -229,6 +245,7 @@ p {
   border-left: 6px solid orange;
   display: grid;
   justify-items: end;
+  align-content: space-between;
   gap: 2rem;
 }
 
@@ -237,18 +254,22 @@ p {
   margin-bottom: 0.5rem;
 }
 
+/* User Section */
+
+/* Trending Section */
+.trending img {
+  height: 40px;
+  width: 40px;
+  grid-row: 1/3;
+  justify-self: center;
+}
+
 .user {
   display: grid;
   align-items: center;
   justify-items: start;
   grid-template-columns: 1fr 2fr;
   margin: 0.5rem 0;
-}
-
-.trending img {
-  height: 40px;
-  width: 40px;
-  grid-row: 1/3;
 }
 
 .trending p {
@@ -265,6 +286,7 @@ p {
   gap: 1rem;
 }
 
+/* Announcements Section */
 .announcements .card-content {
   border-bottom: 1px solid lightgray;
   padding: 1rem 0;
