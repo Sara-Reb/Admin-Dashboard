@@ -50,7 +50,7 @@ p {
   display: grid;
   align-items: center;
   background-color: white;
-  box-shadow: 0px 0px 5px grey;
+  box-shadow: 0px 2px 5px grey;
   padding: 0.5rem 2rem;
 }
 
@@ -234,6 +234,7 @@ p {
   background-color: white;
   border-radius: 0.5rem;
   padding: 1rem;
+  box-shadow: 2px 2px 5px grey;
 }
 
 .card svg {
